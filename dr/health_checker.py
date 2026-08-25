@@ -29,13 +29,77 @@ URL = {"a": "http://127.0.0.1:8001", "b": "http://127.0.0.1:8002"}
 
 
 def probe(region: str, timeout: float) -> tuple[bool, str]:
-    """TODO: trả về (ready, reason). Timeout PHẢI có — netblock làm request treo mãi."""
-    raise NotImplementedError
+    """Trả về (ready, reason). Timeout PHẢI có — netblock làm request treo mãi."""
+    endpoint = f"{URL[region]}/readyz"
+    try:
+        response = httpx.get(endpoint, timeout=timeout)
+        if response.status_code == 200:
+            return True, "readyz 200"
+        else:
+            return False, f"readyz {response.status_code}"
+    except httpx.TimeoutException:
+        return False, "timeout"
+    except httpx.RequestError as e:
+        return False, f"request error: {type(e).__name__}"
 
 
 def run(interval: float, timeout: float, threshold: int, duration: float, out: pathlib.Path):
-    """TODO: vòng lặp poll + phát hiện transition + ghi JSONL."""
-    raise NotImplementedError
+    # 1. Khởi tạo trạng thái ban đầu của 2 region
+    state = {
+        "a": {"status": "HEALTHY", "fail_count": 0},
+        "b": {"status": "HEALTHY", "fail_count": 0},
+    }
+    
+    start_time = time.time()
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(out, "w") as f:
+        # 2. Vòng lặp chạy trong khoảng thời gian duration
+        while time.time() - start_time < duration:
+            loop_start = time.time()
+            
+            for region in ["a", "b"]:
+                # Gọi probe() theo positional arguments
+                ready, reason = probe(region, timeout)
+                
+                curr = state[region]
+                
+                if ready:
+                    # Reset đếm lỗi nếu probe thành công
+                    curr["fail_count"] = 0
+                    new_status = "HEALTHY"
+                else:
+                    # Tăng số lần lỗi liên tiếp
+                    curr["fail_count"] += 1
+                    # Chỉ chuyển sang UNHEALTHY khi đủ threshold lần lỗi liên tiếp
+                    if curr["fail_count"] >= threshold:
+                        new_status = "UNHEALTHY"
+                    else:
+                        new_status = curr["status"]  # Giữ nguyên trạng thái cũ
+                
+                # 3. Kiểm tra xem có ĐỔI TRẠNG THÁI (state transition) hay không
+                if new_status != curr["status"]:
+                    event = {
+                        "event": "state_change",
+                        "ts": time.time(),
+                        "region": region,
+                        "to": new_status,
+                        "reason": reason,
+                        "interval_s": interval,
+                        "threshold": threshold,
+                        "consecutive_fails": curr["fail_count"],
+                    }
+                    # Ghi dòng JSONL
+                    f.write(json.dumps(event) + "\n")
+                    f.flush()
+                    
+                    # Cập nhật trạng thái mới
+                    curr["status"] = new_status
+
+            # 4. Duy trì chu kỳ polling `interval`
+            elapsed = time.time() - loop_start
+            sleep_time = max(0.0, interval - elapsed)
+            time.sleep(sleep_time)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,7 @@
+{"ts": 1787682187.163477, "iso": "2026-08-25T18:23:07.162342+00:00", "step": 1, "name": "xac_nhan_outage", "primary": "a", "is_down": true, "reasons": ["ReadTimeout", "ReadTimeout"]}
+{"ts": 1787682187.1647592, "iso": "2026-08-25T18:23:07.164753+00:00", "step": 2, "name": "thong_bao_incident", "primary": "a", "target": "b", "notice": "Incident initiated. Starting RTO clock."}
+{"ts": 1787682193.4466162, "iso": "2026-08-25T18:23:13.446615+00:00", "step": 3, "name": "scale_gpu_pool", "target": "b", "status": "success"}
+{"ts": 1787682193.446848, "iso": "2026-08-25T18:23:13.446847+00:00", "step": 4, "name": "verify_state_replica", "target": "b", "rpo_seconds": 8.02, "docs_lost": 4, "embed_model_version": "embed-model=vi-e5-base@v3"}
+{"ts": 1787682193.446923, "iso": "2026-08-25T18:23:13.446919+00:00", "step": 5, "name": "dns_cutover", "active_region": "b", "status": "ok"}
+{"ts": 1787682194.2496068, "iso": "2026-08-25T18:23:14.249592+00:00", "step": 6, "name": "verify_golden_signals", "target": "b", "requests": 10, "error_rate": 0.0, "p95_latency_s": 0.028036117553710938}
+{"ts": 1787682194.250068, "iso": "2026-08-25T18:23:14.250066+00:00", "step": 7, "name": "post_incident", "status": "completed", "elapsed_s": 11.401924848556519, "measure_cmd": "python3 tools/measure_rto.py --loadgen reports/drill-2-withdr.jsonl --target-rto 300"}

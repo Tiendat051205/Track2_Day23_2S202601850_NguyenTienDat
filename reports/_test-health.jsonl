@@ -1,0 +1,2 @@
+{"event": "state_change", "ts": 1787682844.5525389, "region": "a", "to": "UNHEALTHY", "reason": "mock", "interval_s": 0.01, "threshold": 3, "consecutive_fails": 3}
+{"event": "state_change", "ts": 1787682844.56496, "region": "b", "to": "UNHEALTHY", "reason": "mock", "interval_s": 0.01, "threshold": 3, "consecutive_fails": 3}
