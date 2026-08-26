@@ -26,7 +26,7 @@ _scale = {"state": None, "since": 0.0}
 
 
 def pool_state() -> str:
-    f = STATE / "pool_state"
+    f = STATE / "pool_state" 
     s = f.read_text().strip() if f.exists() else "cold"
     if s != _scale["state"]:
         # Lần đọc đầu tiên = trạng thái lúc boot -> không tính warmup.

@@ -15,3 +15,15 @@
 {"ts": 1787682844.729996, "iso": "2026-08-25T18:34:04.729992+00:00", "step": "2_restore_snapshot", "target": "b", "backend": "fs", "rpo_seconds": 90.16, "docs_lost": 45, "embed_model_version": "test", "status": "ok"}
 {"ts": 1787682844.792212, "iso": "2026-08-25T18:34:04.792208+00:00", "step": "3_scale_pool", "target": "b", "pool_state": "full", "status": "ok"}
 {"ts": 1787682845.8027918, "iso": "2026-08-25T18:34:05.802765+00:00", "step": "4_wait_ready", "target": "b", "status": "failed", "reason": "request_error_ConnectError", "elapsed_s": 1.010308027267456}
+{"ts": 1787711037.124871, "iso": "2026-08-26T02:23:57.123873+00:00", "step": "1_verify_target", "target": "b", "status": "ok", "weights": false, "vector_count": 0, "pool_state": "unknown"}
+{"ts": 1787711037.128303, "iso": "2026-08-26T02:23:57.128297+00:00", "step": "2_restore_snapshot", "target": "b", "backend": "fs", "rpo_seconds": 90.16, "docs_lost": 45, "embed_model_version": "test", "status": "ok"}
+{"ts": 1787711037.213303, "iso": "2026-08-26T02:23:57.213300+00:00", "step": "3_scale_pool", "target": "b", "pool_state": "full", "status": "ok"}
+{"ts": 1787711038.222048, "iso": "2026-08-26T02:23:58.222037+00:00", "step": "4_wait_ready", "target": "b", "status": "failed", "reason": "request_error_ConnectError", "elapsed_s": 1.008523941040039}
+{"ts": 1787711172.843473, "iso": "2026-08-26T02:26:12.843104+00:00", "step": "1_verify_target", "target": "b", "status": "ok", "weights": false, "vector_count": 0, "pool_state": "unknown"}
+{"ts": 1787711172.846687, "iso": "2026-08-26T02:26:12.846683+00:00", "step": "2_restore_snapshot", "target": "b", "backend": "fs", "rpo_seconds": 90.16, "docs_lost": 45, "embed_model_version": "test", "status": "ok"}
+{"ts": 1787711172.9155672, "iso": "2026-08-26T02:26:12.915565+00:00", "step": "3_scale_pool", "target": "b", "pool_state": "full", "status": "ok"}
+{"ts": 1787711173.9255328, "iso": "2026-08-26T02:26:13.925515+00:00", "step": "4_wait_ready", "target": "b", "status": "failed", "reason": "request_error_ConnectError", "elapsed_s": 1.009749174118042}
+{"ts": 1787711203.488215, "iso": "2026-08-26T02:26:43.487600+00:00", "step": "1_verify_target", "target": "b", "status": "ok", "weights": false, "vector_count": 0, "pool_state": "unknown"}
+{"ts": 1787711203.491084, "iso": "2026-08-26T02:26:43.491079+00:00", "step": "2_restore_snapshot", "target": "b", "backend": "fs", "rpo_seconds": 90.16, "docs_lost": 45, "embed_model_version": "test", "status": "ok"}
+{"ts": 1787711203.5557902, "iso": "2026-08-26T02:26:43.555786+00:00", "step": "3_scale_pool", "target": "b", "pool_state": "full", "status": "ok"}
+{"ts": 1787711204.565066, "iso": "2026-08-26T02:26:44.565030+00:00", "step": "4_wait_ready", "target": "b", "status": "failed", "reason": "request_error_ConnectError", "elapsed_s": 1.0090417861938477}
